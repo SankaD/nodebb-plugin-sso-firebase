@@ -1,6 +1,6 @@
 {
   "name": "nodebb-plugin-sso-firebase",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Firebase Single Sign-On plugin for NodeBB",
   "main": "library.js",
   "scripts": {
@@ -26,16 +26,16 @@
     "compatibility": "^1.1.x"
   },
   "devDependencies": {
-    "make-node": "0.3.x",
-    "mocha": "1.x.x",
-    "chai": "2.x.x",
-    "chai-passport-strategy": "1.x.x"
+    "make-node": "^0.4.6",
+    "mocha": "^9.1.2",
+    "chai": "^4.3.4",
+    "chai-passport-strategy": "^1.0.1"
   },
   "dependencies": {
-    "firebase": "^3.4.1",
-    "firebase-admin": "^5.0.1",
-    "passport-strategy": "1.x.x",
-    "uid2": "0.0.x",
-    "winston": "^2.1.0"
+    "firebase": "^9.1.0",
+    "firebase-admin": "^9.11.1",
+    "passport-strategy": "^1.0.0",
+    "uid2": "^1.0.0",
+    "winston": "^3.3.3"
   }
 }

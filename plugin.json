@@ -4,7 +4,7 @@
 	"description": "NodeBB Plugin that allows users to login/register via their Firebase authentication.",
 	"url": "https://github.com/bambusoideae/nodebb-plugin-sso-firebase",
 	"library": "./library.js",
-	"templates": "templates",
+	"templates": "./templates",
 	"hooks": [
 		{ "hook": "static:app.preload", "method": "appPreload" },
 		{ "hook": "static:app.load", "method": "init" },
