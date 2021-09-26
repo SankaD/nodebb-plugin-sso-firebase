@@ -6,11 +6,11 @@
 	let winston = require('winston');
 
 	// Import NodeBB modules
-	let User = module.parent.require('./src/user'),
-		meta = module.parent.require('./src/meta'),
-		db = module.parent.require('./src/database'),
+	let User = module.parent.require('./user'),
+		meta = module.parent.require('./meta'),
+		db = module.parent.require('../src/database'),
 		passport = module.parent.require('passport');
-	let utils = module.parent.require('./public/src/utils');
+	let utils = module.parent.require('../public/src/utils');
 	let	passportFirebase = require('./lib/passport-firebase-auth').Strategy;
 	let	fs = module.parent.require('fs'),
 		path = module.parent.require('path'),
