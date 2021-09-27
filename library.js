@@ -6,18 +6,18 @@
 	let winston = require('winston');
 
 	// Import NodeBB modules
-	let User = module.parent.require('./user'),
-		meta = module.parent.require('./meta'),
-		db = module.parent.require('../src/database'),
-		passport = module.parent.require('passport');
-	let utils = module.parent.require('../public/src/utils');
+	let User = require.main.require('./src/user'),
+		meta = require.main.require('./src/meta'),
+		db = require.main.require('./src/database'),
+		passport = require.main.require('passport');
+	let utils = require.main.require('./public/src/utils');
 	let	passportFirebase = require('./lib/passport-firebase-auth').Strategy;
-	let	fs = module.parent.require('fs'),
-		path = module.parent.require('path'),
-		nconf = module.parent.require('nconf'),
-		async = module.parent.require('async');
+	let	fs = require.main.require('fs'),
+		path = require.main.require('path'),
+		nconf = require.main.require('nconf'),
+		async = require.main.require('async');
 
-	let authenticationController = module.parent.require('./src/controllers/authentication');
+	let authenticationController = require.main.require('./src/controllers/authentication');
 
 	let constants = Object.freeze({
 		'name': "Firebase",
@@ -42,18 +42,19 @@
 						if (err) {
 							// File is not exist
 							// Warn: Please check firebase config
-							winston.warn('Cannot Initialize Firebase App. Please check firebase config!');
+							winston.warn(err);
+							winston.warn('Cannot Initialize Firebase App. Please check firebase config! 1');
 						} else if (stats.isFile()) {
 							// Initialize firebase app
 							winston.info('Initializing Firebase App...');
 							firebaseAdmin.initializeApp({
-  								credential: firebaseAdmin.credential.cert(firebaseServiceAccountConfig),
-  								databaseURL: firebaseDatabaseUrl
+								credential: firebaseAdmin.credential.cert(firebaseServiceAccountConfig),
+								// databaseURL: firebaseDatabaseUrl
 							});
 							winston.info('Firebase Admin Ready');
 						} else {
 							// Warn: Please check firebase config
-							winston.warn('Cannot Initialize Firebase App. Please check firebase config!');
+							winston.warn('Cannot Initialize Firebase App. Please check firebase config! 2');
 						}
 
 						// next();
@@ -95,7 +96,7 @@
 	FirebaseAuth.getStrategy = function(strategies, callback) {
 		meta.settings.get('sso-firebase', function(err, settings) {
 			if (!err && settings['firebase-service-account'] && settings['firebase-database-url'] && settings['firebase-project-id'] && settings['authorizationurl'] &&
-						settings['allowFirebaseLogin'] && settings['allowFirebaseLogin'] === "on") {
+				settings['allowFirebaseLogin'] && settings['allowFirebaseLogin'] === "on") {
 
 				passport.use(new passportFirebase({
 					firebaseProjectId: settings['firebase-project-id'],
